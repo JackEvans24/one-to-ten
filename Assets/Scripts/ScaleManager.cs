@@ -17,8 +17,10 @@ public class ScaleManager : MonoBehaviour
 
     private void Awake()
     {
-        var scalesTemp = TemporaryScaleList.Scales.OrderBy(scale => Guid.NewGuid());
-        foreach (var scale in scalesTemp)
+        var service = new ScaleService();
+        var scales = service.GetScales();
+
+        foreach (var scale in scales)
             this.scaleQueue.Enqueue(scale);
 
         this.ShowNextPlayerCanvas();

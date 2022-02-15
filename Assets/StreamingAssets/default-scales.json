@@ -1,0 +1,25 @@
+{
+	"scales":
+	[
+		{
+			"name": "easy",
+			"categories": 1
+		},
+		{
+			"name": "funny",
+			"categories": 1
+		},
+		{
+			"name": "sexy",
+			"categories": 1
+		},
+		{
+			"name": "stupid",
+			"categories": 1
+		},
+		{
+			"name": "scary",
+			"categories": 1
+		}
+	]
+}
