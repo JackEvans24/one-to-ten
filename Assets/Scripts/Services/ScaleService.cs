@@ -18,8 +18,8 @@ public class ScaleService
         }
     }
 
-    private Scale[] allScales;
-    public Scale[] AllScales
+    private string[] allScales;
+    public string[] AllScales
     {
         get
         {
@@ -30,7 +30,7 @@ public class ScaleService
     }
 
     private const string defaultScalesPath = "Assets/StreamingAssets/default-scales.json";
-    private Scale[] GetScales()
+    private string[] GetScales()
     {
         string json;
         using (StreamReader r = new StreamReader(defaultScalesPath))
@@ -39,15 +39,16 @@ public class ScaleService
         }
 
         if (json == null)
-            return new Scale[0];
+            return new string[0];
 
         var dto = JsonUtility.FromJson<ScalesDto>(json);
-        return dto.scales.OrderBy(scale => Guid.NewGuid()).ToArray();
+        return dto.adjectiveScales.Union(dto.actionScales).OrderBy(scale => Guid.NewGuid()).ToArray();
     }
 
     [Serializable]
     class ScalesDto
     {
-        public Scale[] scales;
+        public string[] adjectiveScales;
+        public string[] actionScales;
     }
 }
