@@ -5,8 +5,32 @@ using UnityEngine;
 
 public class ScaleService
 {
+    private ScaleService() { }
+
+    private static ScaleService instance;
+    public static ScaleService Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = new ScaleService();
+            return instance;
+        }
+    }
+
+    private Scale[] allScales;
+    public Scale[] AllScales
+    {
+        get
+        {
+            if (this.allScales == null)
+                this.allScales = this.GetScales();
+            return this.allScales;
+        }
+    }
+
     private const string defaultScalesPath = "Assets/StreamingAssets/default-scales.json";
-    public Scale[] GetScales()
+    private Scale[] GetScales()
     {
         string json;
         using (StreamReader r = new StreamReader(defaultScalesPath))

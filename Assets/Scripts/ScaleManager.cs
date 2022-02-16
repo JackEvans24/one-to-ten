@@ -17,8 +17,7 @@ public class ScaleManager : MonoBehaviour
 
     private void Awake()
     {
-        var service = new ScaleService();
-        var scales = service.GetScales();
+        var scales = ScaleService.Instance.AllScales;
 
         foreach (var scale in scales)
             this.scaleQueue.Enqueue(scale);
