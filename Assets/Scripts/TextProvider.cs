@@ -7,18 +7,17 @@ public static class TextProvider
     private static string outOfTenText = "<size=50%> /10</size>";
 
     public static string GetPromptText(CurrentTurnData turn) =>
-        WrapWithSize("Name", 70) + " " + WrapWithColour("#FF8300", "something") + " " +
-        WrapWithSize("that is", 70) + " " + WrapWithColour("#FF8300", turn.ActualValue.ToString()) +
-        WrapWithSize("/10", 70) + " " + WrapWithColour("#FF8300", turn.CurrentScale.name);
+        WrapWithSize("Name something that is", 70) + " " + WrapWithColour("#FF8300", turn.ActualValue.ToString()) +
+        WrapWithSize("/10", 70) + " " + WrapWithColour("#FF8300", turn.CurrentScale);
 
     public static string GetQuestionText(CurrentTurnData turn) =>
-        WrapWithSize("How", 70) + " " + WrapWithColour("#FF8300", turn.CurrentScale.name) + " " +
+        WrapWithSize("How", 70) + " " + WrapWithColour("#FF8300", turn.CurrentScale) + " " +
         WrapWithSize("does", 70) + " " + WrapWithColour("#FF8300", "Player") + " " +
         WrapWithSize("think", 70) + " " + WrapWithColour("#FF8300", turn.PlayerInput) + " " +
         WrapWithSize("is?", 70);
 
     public static string GetResultText(CurrentTurnData turn) =>
-        WrapWithSize("How", 70) + " " + WrapWithColour("#FF8300", turn.CurrentScale.name) + " " +
+        WrapWithSize("How", 70) + " " + WrapWithColour("#FF8300", turn.CurrentScale) + " " +
         WrapWithSize("is", 70) + " " + WrapWithColour("#FF8300", turn.PlayerInput) + " " +
         WrapWithSize("?", 70);
 

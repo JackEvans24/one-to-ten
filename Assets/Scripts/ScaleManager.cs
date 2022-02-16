@@ -12,7 +12,7 @@ public class ScaleManager : MonoBehaviour
     [SerializeField] private ArgumentStep argumentCanvas;
     [SerializeField] private ResultStep resultCanvas;
 
-    private Queue<Scale> scaleQueue = new Queue<Scale>();
+    private Queue<string> scaleQueue = new Queue<string>();
     private CurrentTurnData currentTurn = new CurrentTurnData();
 
     private void Awake()
@@ -64,7 +64,7 @@ public class ScaleManager : MonoBehaviour
         this.currentTurn.Reset(scale);
     }
 
-    private Scale GetNextScale()
+    private string GetNextScale()
     {
         var nextScale = this.scaleQueue.Dequeue();
         this.scaleQueue.Enqueue(nextScale);

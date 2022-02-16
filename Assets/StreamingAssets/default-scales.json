@@ -1,25 +1,70 @@
 {
-	"scales":
+	"adjectiveScales":
 	[
-		{
-			"name": "easy",
-			"categories": 1
-		},
-		{
-			"name": "funny",
-			"categories": 1
-		},
-		{
-			"name": "sexy",
-			"categories": 1
-		},
-		{
-			"name": "stupid",
-			"categories": 1
-		},
-		{
-			"name": "scary",
-			"categories": 1
-		}
+		"funny",
+		"funny looking",
+		"sexy",
+		"stupid",
+		"dirty",
+		"boring",
+		"ugly",
+		"unique",
+		"complicated",
+		"colourful",
+		"elegant",
+		"evil",
+		"magical",
+		"friendly",
+		"fragile",
+		"strong",
+		"wild",
+		"fun",
+		"happy",
+		"helpful",
+		"useless",
+		"expensive",
+		"weak",
+		"lazy",
+		"disgusting",
+		"heroic",
+		"shiny",
+		"silly",
+		"painful",
+		"tasty",
+		"cold",
+		"popular",
+		"soft",
+		"fast",
+		"slow",
+		"moist",
+		"slippery",
+		"squishy",
+		"cute",
+		"small",
+		"large",
+		"crunchy",
+		"clumsy",
+		"brown",
+		"stinky",
+		"pungent",
+		"elusive",
+		"spicy",
+		"cringy",
+		"wet",
+		"spiky",
+		"pointy",
+		"bright",
+		"upsetting",
+		"basic",
+		"scary"
+	],
+	"actionScales":
+	[
+		"hard to hide",
+		"easy to push",
+		"easy to subdue",
+		"easy to wrap up",
+		"easy to understand",
+		"likely to kill you"
 	]
 }
