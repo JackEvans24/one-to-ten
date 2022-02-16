@@ -15,7 +15,7 @@ public class ArgumentStep : GameStep
     {
         this.promptText.text = TextProvider.GetQuestionText(turn);
 
-        this.valueSlider.value = 1;
+        this.valueSlider.value = 0;
         this.UpdateSliderTextValue();
     }
 
