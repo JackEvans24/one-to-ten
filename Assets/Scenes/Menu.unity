@@ -530,7 +530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <color=#FF8300>One</color> <size=70%>to</size> <color=#FF8300>Ten</color>
+  m_text: Out of <color=#FF8300>10</color>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a318cbf5de5402d4bb5bb436e4afe6fe, type: 2}
   m_sharedMaterial: {fileID: -6436392327196959687, guid: a318cbf5de5402d4bb5bb436e4afe6fe, type: 2}
