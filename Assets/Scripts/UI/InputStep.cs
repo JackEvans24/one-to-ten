@@ -11,7 +11,7 @@ public class InputStep : GameStep
 
     public string PlayerInput { get => playerInput.text; }
 
-    public void UpdateGameValues(CurrentTurnData turn)
+    public override void UpdateGameValues(CurrentTurnData turn)
     {
         this.promptText.text = TextProvider.GetPromptText(turn);
         this.playerInput.text = string.Empty;

@@ -6,8 +6,8 @@ public class GameStep : MonoBehaviour
 {
     [Header("Canvas show/hide")]
     [SerializeField] protected CanvasGroup canvas;
-    [SerializeField] protected float scaleUpDuration = 0.5f, scaleDownDuration = 0.2f;
-    [SerializeField] protected Ease scaleUpEasing = Ease.OutBounce, scaleDownEasing = Ease.InBounce;
+    [SerializeField] protected float scaleUpDuration = 0.4f, scaleDownDuration = 0.2f;
+    [SerializeField] protected Ease scaleUpEasing = Ease.OutSine, scaleDownEasing = Ease.InSine;
 
     public virtual IEnumerator Show()
     {
@@ -39,5 +39,10 @@ public class GameStep : MonoBehaviour
             .WaitForCompletion();
 
         this.canvas.alpha = 0;
+    }
+
+    public virtual void UpdateGameValues(CurrentTurnData turn)
+    {
+
     }
 }
