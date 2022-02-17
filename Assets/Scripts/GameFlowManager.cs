@@ -20,6 +20,8 @@ public class GameFlowManager : MonoBehaviour
 
     protected void Awake()
     {
+        LogManager.Log("Game flow manager Awake()");
+
         var scales = ScaleService.Instance.AllScales;
 
         foreach (var scale in scales)
@@ -30,11 +32,15 @@ public class GameFlowManager : MonoBehaviour
 
     protected void Start()
     {
+        LogManager.Log("Game flow manager Start()");
+
         this.NextGameStep();
     }
 
     public void NextGameStep()
     {
+        LogManager.Log("Next game step started: " + this.currentTurn.CurrentState);
+
         switch (this.currentTurn.CurrentState)
         {
             case GameState.StartOfTurn:
