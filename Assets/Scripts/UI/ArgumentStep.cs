@@ -11,7 +11,7 @@ public class ArgumentStep : GameStep
 
     public int GuessedValue { get => Mathf.RoundToInt(this.valueSlider.value); }
 
-    public void UpdateGameValues(CurrentTurnData turn)
+    public override void UpdateGameValues(CurrentTurnData turn)
     {
         this.promptText.text = TextProvider.GetQuestionText(turn);
 
