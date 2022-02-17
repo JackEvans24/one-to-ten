@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameFlowManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField] private GameStep audienceCanvas;
     [SerializeField] private ArgumentStep argumentCanvas;
     [SerializeField] private ResultStep resultCanvas;
-    [SerializeField] private ConfirmModal modal;
+    [SerializeField] private ConfirmModal confirmModal;
+    [SerializeField] private GameStep pauseModal;
 
     private Queue<string> scaleQueue = new Queue<string>();
     private CurrentTurnData currentTurn = new CurrentTurnData();
@@ -66,6 +68,22 @@ public class GameFlowManager : MonoBehaviour
         this.currentTurn.UpdateState(this.nextPlayerCanvas.AllowNewPlayers);
     }
 
+    public void Pause()
+    {
+        this.confirmModal.UpdateAnswerText(string.Empty);
+        StartCoroutine(this.pauseModal.Show());
+    }
+
+    public void ClosePauseModal()
+    {
+        StartCoroutine(this.pauseModal.Hide());
+    }
+
+    public void QuitGame()
+    {
+        SceneManager.LoadScene((int)Scenes.MainMenu);
+    }
+
     public void ShowModal()
     {
         string answer = string.Empty;
@@ -74,15 +92,15 @@ public class GameFlowManager : MonoBehaviour
         else if (this.currentTurn.CurrentState == GameState.Argument)
             answer = TextProvider.GetSliderValueText(this.argumentCanvas.GuessedValue);
 
-        this.modal.UpdateAnswerText(answer);
+        this.confirmModal.UpdateAnswerText(answer);
 
-        this.modal.UpdateGameValues(this.currentTurn);
-        StartCoroutine(this.modal.Show());
+        this.confirmModal.UpdateGameValues(this.currentTurn);
+        StartCoroutine(this.confirmModal.Show());
     }
 
     public void CloseModal()
     {
-        StartCoroutine(this.modal.Hide());
+        StartCoroutine(this.confirmModal.Hide());
     }
 
     protected void ShowNextPlayerCanvas()
@@ -163,7 +181,7 @@ public class GameFlowManager : MonoBehaviour
 
     protected IEnumerator ShowGameStep(GameStep canvasToShow)
     {
-        var allCanvases = new GameStep[] { this.modal, this.nextPlayerCanvas, this.newPlayerCanvas, this.inputCanvas, this.audienceCanvas, this.argumentCanvas, this.resultCanvas };
+        var allCanvases = new GameStep[] { this.confirmModal, this.nextPlayerCanvas, this.newPlayerCanvas, this.inputCanvas, this.audienceCanvas, this.argumentCanvas, this.resultCanvas };
         foreach (var canvas in allCanvases)
             yield return canvas.Hide();
 
