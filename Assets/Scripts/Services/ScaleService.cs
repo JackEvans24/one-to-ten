@@ -42,7 +42,11 @@ public class ScaleService
             return new string[0];
 
         var dto = JsonUtility.FromJson<ScalesDto>(json);
-        return dto.adjectiveScales.Union(dto.actionScales).OrderBy(scale => Guid.NewGuid()).ToArray();
+        return dto.adjectiveScales
+            .Union(dto.actionScales)
+            .Union(dto.placeScales)
+            .OrderBy(scale => Guid.NewGuid())
+            .ToArray();
     }
 
     [Serializable]
@@ -50,5 +54,6 @@ public class ScaleService
     {
         public string[] adjectiveScales;
         public string[] actionScales;
+        public string[] placeScales;
     }
 }

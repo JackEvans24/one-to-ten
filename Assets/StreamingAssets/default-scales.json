@@ -56,7 +56,12 @@
 		"bright",
 		"upsetting",
 		"basic",
-		"scary"
+		"scary",
+		"classy",
+		"creamy",
+		"controversial",
+		"fruity",
+		"transparent"
 	],
 	"actionScales":
 	[
@@ -65,6 +70,22 @@
 		"easy to subdue",
 		"easy to wrap up",
 		"easy to understand",
-		"likely to kill you"
+		"likely to kill you",
+		"likely to get you fired",
+		"acceptable in public",
+		"passable as modern art"
+	],
+	"placeScales":
+	[
+		"British",
+		"European",
+		"American",
+		"Spanish",
+		"likely to be found in the sea",
+		"likely to be found on the moon",
+		"likely to be found on a boat",
+		"likely to be found on a plane",
+		"likely to be found in the bathroom",
+		"likely to be found in the kitchen"
 	]
 }
