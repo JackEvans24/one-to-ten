@@ -20,21 +20,24 @@ public class GameFlowManager : MonoBehaviour
 
     protected void Awake()
     {
-        var scales = ScaleService.Instance.AllScales;
+        LogManager.Log("Game flow manager Awake()");
 
-        foreach (var scale in scales)
-            this.scaleQueue.Enqueue(scale);
+        this.scaleQueue = ScaleService.Instance.AllScales;
 
         GameManager.ResetPlayers();
     }
 
     protected void Start()
     {
+        LogManager.Log("Game flow manager Start()");
+
         this.NextGameStep();
     }
 
     public void NextGameStep()
     {
+        LogManager.Log("Next game step started: " + this.currentTurn.CurrentState);
+
         switch (this.currentTurn.CurrentState)
         {
             case GameState.StartOfTurn:

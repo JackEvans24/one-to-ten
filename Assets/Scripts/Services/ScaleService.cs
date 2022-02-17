@@ -1,5 +1,5 @@
 using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -18,30 +18,30 @@ public class ScaleService
         }
     }
 
-    private string[] allScales;
-    public string[] AllScales
+    private Queue<string> allScales;
+    public Queue<string> AllScales
     {
         get
         {
             if (this.allScales == null)
-                this.allScales = this.GetScales();
+            {
+                this.allScales = new Queue<string>();
+                foreach (var scale in this.GetScales())
+                    this.allScales.Enqueue(scale);
+            }
+
             return this.allScales;
         }
     }
 
-    private const string defaultScalesPath = "Assets/StreamingAssets/default-scales.json";
     private string[] GetScales()
     {
-        string json;
-        using (StreamReader r = new StreamReader(defaultScalesPath))
-        {
-            json = r.ReadToEnd();
-        }
+        var file = Resources.Load("scales") as TextAsset;
 
-        if (json == null)
+        if ((file?.text.Length ?? 0) == 0)
             return new string[0];
 
-        var dto = JsonUtility.FromJson<ScalesDto>(json);
+        var dto = JsonUtility.FromJson<ScalesDto>(file.text);
         return dto.adjectiveScales
             .Union(dto.actionScales)
             .Union(dto.placeScales)
