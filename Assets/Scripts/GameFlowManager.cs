@@ -22,10 +22,7 @@ public class GameFlowManager : MonoBehaviour
     {
         LogManager.Log("Game flow manager Awake()");
 
-        var scales = ScaleService.Instance.AllScales;
-
-        foreach (var scale in scales)
-            this.scaleQueue.Enqueue(scale);
+        this.scaleQueue = ScaleService.Instance.AllScales;
 
         GameManager.ResetPlayers();
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -17,13 +18,18 @@ public class ScaleService
         }
     }
 
-    private string[] allScales;
-    public string[] AllScales
+    private Queue<string> allScales;
+    public Queue<string> AllScales
     {
         get
         {
             if (this.allScales == null)
-                this.allScales = this.GetScales();
+            {
+                this.allScales = new Queue<string>();
+                foreach (var scale in this.GetScales())
+                    this.allScales.Enqueue(scale);
+            }
+
             return this.allScales;
         }
     }
