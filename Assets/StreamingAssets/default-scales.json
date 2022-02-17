@@ -61,7 +61,9 @@
 		"creamy",
 		"controversial",
 		"fruity",
-		"transparent"
+		"transparent",
+		"nerdy",
+		"addictive"
 	],
 	"actionScales":
 	[
@@ -72,6 +74,8 @@
 		"easy to understand",
 		"likely to kill you",
 		"likely to get you fired",
+		"likely to win a fight with a goose",
+		"useful on a desert island",
 		"acceptable in public",
 		"passable as modern art"
 	],
@@ -80,7 +84,6 @@
 		"British",
 		"European",
 		"American",
-		"Spanish",
 		"likely to be found in the sea",
 		"likely to be found on the moon",
 		"likely to be found on a boat",
