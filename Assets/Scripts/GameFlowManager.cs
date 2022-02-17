@@ -11,8 +11,7 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField] private GameStep audienceCanvas;
     [SerializeField] private ArgumentStep argumentCanvas;
     [SerializeField] private ResultStep resultCanvas;
-
-    private GameState currentState = GameState.StartOfTurn;
+    [SerializeField] private ConfirmModal modal;
 
     private Queue<string> scaleQueue = new Queue<string>();
     private CurrentTurnData currentTurn = new CurrentTurnData();
@@ -34,7 +33,7 @@ public class GameFlowManager : MonoBehaviour
 
     public void NextGameStep()
     {
-        switch (this.currentState)
+        switch (this.currentTurn.CurrentState)
         {
             case GameState.StartOfTurn:
                 this.StartOfNewTurn();
@@ -64,7 +63,26 @@ public class GameFlowManager : MonoBehaviour
                 throw new NotImplementedException();
         }
 
-        this.UpdateCurrentState();
+        this.currentTurn.UpdateState(this.nextPlayerCanvas.AllowNewPlayers);
+    }
+
+    public void ShowModal()
+    {
+        string answer = string.Empty;
+        if (this.currentTurn.CurrentState == GameState.PlayerInput)
+            answer = TextProvider.WrapWithColour(this.inputCanvas.PlayerInput);
+        else if (this.currentTurn.CurrentState == GameState.Argument)
+            answer = TextProvider.GetSliderValueText(this.argumentCanvas.GuessedValue);
+
+        this.modal.UpdateAnswerText(answer);
+
+        this.modal.UpdateGameValues(this.currentTurn);
+        StartCoroutine(this.modal.Show());
+    }
+
+    public void CloseModal()
+    {
+        StartCoroutine(this.modal.Hide());
     }
 
     protected void ShowNextPlayerCanvas()
@@ -75,7 +93,7 @@ public class GameFlowManager : MonoBehaviour
 
     protected void StartOfNewTurn()
     {
-        if (this.nextPlayerCanvas.AddNewPlayer)
+        if (this.nextPlayerCanvas.AllowNewPlayers)
             this.ShowNewPlayerCanvas();
         else
         {
@@ -126,16 +144,6 @@ public class GameFlowManager : MonoBehaviour
         StartCoroutine(this.ShowGameStep(this.resultCanvas));
     }
 
-    protected void UpdateCurrentState()
-    {
-        if (this.currentState == GameState.Results)
-            this.currentState = GameState.StartOfTurn;
-        else if (this.currentState == GameState.StartOfTurn && !this.nextPlayerCanvas.AddNewPlayer)
-            this.currentState = GameState.PlayerInput;
-        else
-            this.currentState = (GameState)((int)this.currentState + 1);
-    }
-
     protected void NewTurn(Player nextPlayer = null)
     {
         if (nextPlayer == null)
@@ -155,7 +163,7 @@ public class GameFlowManager : MonoBehaviour
 
     protected IEnumerator ShowGameStep(GameStep canvasToShow)
     {
-        var allCanvases = new GameStep[] { this.nextPlayerCanvas, this.newPlayerCanvas, this.inputCanvas, this.audienceCanvas, this.argumentCanvas, this.resultCanvas };
+        var allCanvases = new GameStep[] { this.modal, this.nextPlayerCanvas, this.newPlayerCanvas, this.inputCanvas, this.audienceCanvas, this.argumentCanvas, this.resultCanvas };
         foreach (var canvas in allCanvases)
             yield return canvas.Hide();
 

@@ -10,12 +10,12 @@ public class NextPlayerStep : GameStep
     [SerializeField] protected CanvasGroup nextButtonCanvas;
     [SerializeField] protected TMP_Text cycleButtonText;
 
-    public bool AddNewPlayer = true;
+    [HideInInspector] public bool AllowNewPlayers = true;
     private bool showingNewPlayerCanvas = true;
 
     public override void UpdateGameValues(CurrentTurnData turn)
     {
-        if (this.AddNewPlayer)
+        if (this.AllowNewPlayers)
         {
             this.passToPlayerText.text = "Pass the device to the next player";
             this.cycleButtonText.text = "Back to " + TextProvider.GetPlayerNameLabel(GameManager.PeekNextPlayer());
@@ -28,14 +28,14 @@ public class NextPlayerStep : GameStep
 
     public void NoNewPlayers()
     {
-        this.AddNewPlayer = false;
+        this.AllowNewPlayers = false;
     }
 
     public override IEnumerator Hide()
     {
         yield return base.Hide();
 
-        if (!this.AddNewPlayer && this.showingNewPlayerCanvas)
+        if (!this.AllowNewPlayers && this.showingNewPlayerCanvas)
             this.SwitchCanvases();
     }
 
