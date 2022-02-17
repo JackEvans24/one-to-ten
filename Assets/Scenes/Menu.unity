@@ -293,7 +293,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0}
+  m_BackGroundColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1060,6 +1060,7 @@ GameObject:
   - component: {fileID: 1848879351}
   - component: {fileID: 1848879350}
   - component: {fileID: 1848879354}
+  - component: {fileID: 1848879356}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1119,7 +1120,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1160,3 +1161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf7abaa8feab8a418f9dfb3d6b24c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &1848879356
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848879349}
+  m_CullTransparentMesh: 1
