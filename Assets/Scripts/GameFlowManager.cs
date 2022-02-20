@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameFlowManager : MonoBehaviour
 {
+    [Header("Helpers")]
+    [SerializeField] private ValueWeightings weightings;
+
+    [Header("Game Steps")]
     [SerializeField] private NextPlayerStep nextPlayerCanvas;
     [SerializeField] private NewPlayerStep newPlayerCanvas;
     [SerializeField] private InputStep inputCanvas;
@@ -170,8 +174,9 @@ public class GameFlowManager : MonoBehaviour
         if (nextPlayer == null)
             nextPlayer = GameManager.GetNextPlayer();
         var scale = this.GetNextScale();
+        var value = this.weightings.GetWeightedRandomValue();
 
-        this.currentTurn.Reset(nextPlayer, scale);
+        this.currentTurn.Reset(nextPlayer, scale, value);
     }
 
     protected string GetNextScale()

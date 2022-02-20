@@ -14,11 +14,11 @@ public class CurrentTurnData
         this.CurrentState = GameState.StartOfTurn;
     }
 
-    public void Reset(Player currentPlayer, string scale)
+    public void Reset(Player currentPlayer, string scale, int actualValue)
     {
         this.CurrentPlayer = currentPlayer;
         this.CurrentScale = scale;
-        this.ActualValue = Random.Range(0, 11);
+        this.ActualValue = actualValue;
         this.PlayerInput = string.Empty;
         this.GuessedValue = null;
     }
