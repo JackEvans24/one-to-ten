@@ -2,12 +2,12 @@ using UnityEngine;
 
 public static class TextProvider
 {
-    private static string outOfTenText = "<size=50%> /10</size>";
-    private const string defaultOrangeColour = "FF8300";
+    private const string OUT_OF_TEN_TEXT = "<size=50%> /10</size>";
+    private const string DEFAULT_ORANGE_COLOUR = "FF8300";
 
     public static string GetPromptText(CurrentTurnData turn) =>
         WrapWithSize("Name something that is", 70) + " " + WrapWithColour(turn.ActualValue.ToString()) +
-        WrapWithSize("/10", 70) + " " + WrapWithColour(turn.CurrentScale);
+        OUT_OF_TEN_TEXT + " " + WrapWithColour(turn.CurrentScale);
 
     public static string GetQuestionText(CurrentTurnData turn) =>
         WrapWithSize("How", 70) + " " + WrapWithColour(turn.CurrentScale) + " " +
@@ -35,9 +35,9 @@ public static class TextProvider
 
     public static string GetPlayerNameLabel(Player player) => WrapWithColour(player.Name, ColorUtility.ToHtmlStringRGB(player.Color));
 
-    public static string GetSliderValueText(float value) => WrapWithColour(Mathf.RoundToInt(value).ToString()) + outOfTenText;
+    public static string GetSliderValueText(float value) => WrapWithColour(Mathf.RoundToInt(value).ToString()) + OUT_OF_TEN_TEXT;
 
-    public static string WrapWithColour(string text, string colourHex = defaultOrangeColour) => $"<color=#{colourHex}>{text}</color>";
+    public static string WrapWithColour(string text, string colourHex = DEFAULT_ORANGE_COLOUR) => $"<color=#{colourHex}>{text}</color>";
 
     private static string WrapWithSize(string text, int sizePercentage) => $"<size={sizePercentage}%>{text}</size>";
 }

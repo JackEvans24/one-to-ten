@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResultStep : GameStep
 {
@@ -10,6 +11,9 @@ public class ResultStep : GameStep
     [SerializeField] protected TMP_Text playerNameText;
     [SerializeField] protected TMP_Text actualValueText;
     [SerializeField] protected TMP_Text guessedValueText;
+
+    [Header("Other references")]
+    [SerializeField] protected Button nextButton;
 
     [Header("Reveal timings")]
     [SerializeField] protected float revealOffset = 0.6f;
@@ -27,6 +31,8 @@ public class ResultStep : GameStep
 
     public override IEnumerator Show()
     {
+        nextButton.interactable = false;
+        
         yield return base.Show();
 
         yield return new WaitForSeconds(this.revealOffset);
@@ -42,6 +48,8 @@ public class ResultStep : GameStep
             .DOScale(1f, this.revealDuration)
             .SetEase(this.revealEasing)
             .WaitForCompletion();
+
+        nextButton.interactable = true;
     }
 
     public override IEnumerator Hide()
